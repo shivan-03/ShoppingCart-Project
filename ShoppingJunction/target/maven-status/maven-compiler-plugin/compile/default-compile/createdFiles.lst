@@ -1,0 +1,17 @@
+ShoppingPackage\Inventory.class
+ShoppingPackage\Checkout.class
+ShoppingPackage\CustomerFrame.class
+ShoppingPackage\Product.class
+ShoppingPackage\ProductCatalog.class
+com\mycompany\shoppingjunction\ShoppingJunction.class
+com\mycompany\shoppingjunction\CustomerShopping.class
+ShoppingPackage\ShoppingCart.class
+ShoppingPackage\InventoryObserver.class
+ShoppingPackage\ShoppingCartObserver.class
+ShoppingPackage\Seller.class
+ShoppingPackage\SellerFrame.class
+ShoppingPackage\ProductCatalogObserver.class
+ShoppingPackage\ViewCartFrame.class
+com\mycompany\shoppingjunction\MainApp.class
+ShoppingPackage\CheckoutObserver.class
+ShoppingPackage\Customer.class
