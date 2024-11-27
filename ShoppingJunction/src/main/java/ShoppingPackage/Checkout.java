@@ -62,5 +62,14 @@ public class Checkout {
             observer.update(currentOrder);
         }
     }
+    public void processCreditCardPayment(CreditCard card, double amount) {
+        if (card.isValid()) {
+            System.out.println("Payment successful! Amount: $" + amount);
+            finalizeOrder();
+        } else {
+            System.out.println("Invalid credit card details.");
+        }
+    }
+
 }
 
