@@ -85,13 +85,41 @@ public class ViewCartFrame extends JFrame {
     }
 
     private void checkout() {
-        if (shoppingCart.getCartItems().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Your cart is empty.", "Checkout Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            double total = shoppingCart.calculateTotalPrice();
-            JOptionPane.showMessageDialog(this, "Checkout successful! Total: $" + total, "Success", JOptionPane.INFORMATION_MESSAGE);
-            shoppingCart.clearCart();
-            updateCartDisplay();
+    if (shoppingCart.getCartItems().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Your cart is empty.", "Checkout Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    JTextField cardNumberField = new JTextField();
+    JTextField nameField = new JTextField();
+    JTextField expiryField = new JTextField();
+    JTextField cvvField = new JTextField();
+    Object[] message = {
+        "Card Number:", cardNumberField,
+        "Cardholder Name:", nameField,
+        "Expiration Date (MM/YY):", expiryField,
+        "CVV:", cvvField
+    };
+
+    int option = JOptionPane.showConfirmDialog(this, message, "Enter Payment Details", JOptionPane.OK_CANCEL_OPTION);
+        if (option == JOptionPane.OK_OPTION) {
+            String cardNumber = cardNumberField.getText().trim();
+            String name = nameField.getText().trim();
+            String expiry = expiryField.getText().trim();
+            String cvv = cvvField.getText().trim();
+    
+            CreditCard card = new CreditCard(cardNumber, name, expiry, cvv);
+            Checkout checkout = new Checkout(); // Link to your checkout process
+            if (card.isValid()) {
+                double total = shoppingCart.calculateTotalPrice();
+                checkout.processCreditCardPayment(card, total);
+                JOptionPane.showMessageDialog(this, "Payment successful! Total: $" + total, "Success", JOptionPane.INFORMATION_MESSAGE);
+                shoppingCart.clearCart();
+                updateCartDisplay();
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid payment details.", "Payment Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
+
 }
